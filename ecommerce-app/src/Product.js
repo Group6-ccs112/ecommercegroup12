@@ -3,10 +3,8 @@ import ProductInformation from "./ProductInformation";
 import { Link } from "react-router-dom";
 import ViewCart from "./ViewCart"; // Import ViewCart component
 
-function Product() {
+function Product({summary, setSummary}) {
   const [products, setProducts] = useState([]);
-  const [summary, setSummary] = useState({ items: [] });
-  const [showCart, setShowCart] = useState(false); // State to manage cart visibility
 
   const productList = [
     {
@@ -80,18 +78,9 @@ function Product() {
     }));
   }
 
-  function removeFromCart(index) {
-    setSummary(prevSummary => ({
-      items: prevSummary.items.filter((_, i) => i !== index)
-    }));
-  }
-
   return (
     <div>
-        <div className="text-center">
-        <button style={{width:"200px", fontSize:"24px"}} className="btn btn-secondary btn-lg m-5" onClick={() => setShowCart(!showCart)}>My Cart</button> {/* Toggle cart visibility */}
-        </div>  
-        {showCart && <ViewCart items={summary.items} removeFromCart={removeFromCart} />} {/* Render ViewCart if showCart is true */}
+        <h1 className="text-center m-5 p-5">Purchase the apparel that suits you best.<br></br> Add to Cart Now!</h1>
         <div className="d-flex flex-wrap"> {/* Use flex-wrap to wrap items */}
         {products.map(item => (
             <div key={item.id} className="flex-grow-1" style={{ flexBasis: "50%" }}> {/* Set flex-basis to 33.33% for three columns per row */}

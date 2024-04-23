@@ -1,14 +1,20 @@
-// ViewCart.js
 import React from "react";
 
-function ViewCart({ items, removeFromCart }) {
+function ViewCart({ summary, setSummary }) {
+  
+    function removeFromCart(index) {
+      setSummary(prevSummary => ({
+        items: prevSummary.items.filter((_, i) => i !== index)
+      }));
+    }
 
+    const items = summary.items;
     const count = items.length;
     const totalPrice = items.reduce((total, item) => total + item.price, 0);
 
   return (
     <div>
-      <h1 className="text-center mb-3">Your Shopping Cart</h1>
+      <h1 className="text-center mt-5 mb-3 fs-1">Your Shopping Cart</h1>
       <div className="text-center">
         <p>
             <strong>Total Items: {count}</strong>
